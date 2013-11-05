@@ -21,8 +21,8 @@ Commands
 --------
 ```
 $ dokku help
-     sidekiq:create <app>     Specify a sidekiq worker should be deployed for an app 
-     sidekiq:delete <app>     Deactivate automatic deploying of a sidekiq worker
+     sidekiq:activate <app>     Activate automatic deployment of a sidekiq worker 
+     sidekiq:deactivate <app>   Deactivate automatic deployment of a sidekiq worker
 ```
 
 Simple usage
@@ -30,8 +30,8 @@ Simple usage
 
 Specify a Sidekiq worker should be started up for a deployed app:
 ```
-$ dokku sidekiq:create foo            # Server side
-$ ssh dokku@server sidekiq:create foo # Client side
+$ dokku sidekiq:activate foo              # Server side
+$ ssh dokku@server sidekiq:activate foo # Client side
 
 
 
