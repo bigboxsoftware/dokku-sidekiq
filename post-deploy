@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -eo pipefail
+APP="$1"; PORT="$2"
+
+IMAGE="app/$APP"
+
+if [[ -f "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ" ]]; then
+
+  echo "-----> Starting another copy for a worker for app $APP from image $IMAGE..."
+
+  # kill the previous worker when running
+  if [[ -f "$DOKKU_ROOT/$APP/WORKER" ]]; then
+        oldid=$(< "$DOKKU_ROOT/$APP/WORKER")
+        echo "-----> Killing old worker app $oldid"
+        docker kill $oldid > /dev/null
+        rm $DOKKU_ROOT/$APP/WORKER
+  fi
+
+  # start a copy of the app and run sidekiq
+
+  id=$(docker run -d $IMAGE /exec bundle exec sidekiq)
+  echo $id > "$DOKKU_ROOT/$APP/WORKER"
+  echo "-----> Sidekiq worker started with ID $id"
+
+fi
