@@ -22,8 +22,6 @@ case "$1" in
   sidekiq:activate)
     cat "ACTIVE" > "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ"
     echo "-----> Sidekiq automatic deployment activated for $2"
-    echo "-----> PostgreSQL container created: $DB_IMAGE"
-    dokku postgresql:info $APP
     ;;
 
   sidekiq:deactivate)
