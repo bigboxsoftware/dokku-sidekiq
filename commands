@@ -29,6 +29,12 @@ case "$1" in
   sidekiq:deactivate)
     echo "-----> Sidekiq automatic deployment deactivated for $2"
     rm "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ"
+    if [[ -f "$DOKKU_ROOT/$APP/WORKER" ]]; then
+        oldid=$(< "$DOKKU_ROOT/$APP/WORKER")
+        echo "-----> Killing old worker app $oldid"
+        docker kill $oldid > /dev/null
+        rm $DOKKU_ROOT/$APP/WORKER
+    fi
    ;;
 
   help)
