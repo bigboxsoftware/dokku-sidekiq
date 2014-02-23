@@ -20,7 +20,7 @@ fi
 case "$1" in
 
   sidekiq:activate)
-    cat "ACTIVE" > "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ"
+    echo "ACTIVE" > "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ"
     echo "-----> Sidekiq automatic deployment activated for $2"
     ;;
 
