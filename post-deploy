@@ -2,7 +2,7 @@
 set -eo pipefail
 APP="$1"; PORT="$2"
 
-IMAGE="app/$APP"
+IMAGE="dokku/$APP"
 
 if [[ -f "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ" ]]; then
 
