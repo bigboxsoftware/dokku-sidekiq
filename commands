@@ -29,8 +29,11 @@ case "$1" in
     rm "$DOKKU_ROOT/$APP/DEPLOY_SIDEKIQ"
     if [[ -f "$DOKKU_ROOT/$APP/WORKER" ]]; then
         oldid=$(< "$DOKKU_ROOT/$APP/WORKER")
-        echo "-----> Killing old worker app $oldid"
-        docker kill $oldid > /dev/null
+        if ps -p $oldid > /dev/null
+        then
+          echo "-----> Killing old worker app $oldid"
+          docker kill $oldid > /dev/null
+        fi
         rm $DOKKU_ROOT/$APP/WORKER
     fi
    ;;
