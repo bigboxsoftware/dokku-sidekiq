@@ -16,6 +16,11 @@ git clone https://github.com/bigboxsoftware/dokku-sidekiq sidekiq
 dokku plugins-install
 ```
 
+For dokku 0.4.0 and after:
+
+```shell
+dokku plugin:install https://github.com/bigboxsoftware/dokku-sidekiq
+```
 
 Commands
 --------
