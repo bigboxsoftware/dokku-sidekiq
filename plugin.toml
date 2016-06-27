@@ -1,0 +1,4 @@
+[plugin]
+description = "support for sidekiq via post-deploy hook"
+version = "0.1.0"
+[plugin.config]
